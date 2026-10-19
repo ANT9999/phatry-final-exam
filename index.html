@@ -10,23 +10,38 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <style>
-    body {
-      background-color: #fcfcfc;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    :root {
+      --primary-blue: #0d6efd;
+      --hover-red: #dc3545;
+      --bg-gray: #e2e2e2;
     }
 
-    /* Brand Circle Logo */
+    body {
+      background-color: #f8f9fa;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 1. Header & Navigation Responsive */
+    .header-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
     .brand-circle {
-      width: 65px;
-      height: 65px;
+      width: 55px;
+      height: 55px;
+      min-width: 55px;
       background-color: #ffffff;
-      border: 1px solid #777;
+      border: 1px solid #ced4da;
       border-radius: 50%;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     .brand-circle svg {
@@ -34,37 +49,72 @@
       height: 100%;
     }
 
-    /* Navigation Bar */
     .custom-navbar {
-      background-color: #e2e2e2;
-      border: 1px solid #777;
-      border-radius: 40px;
-      padding: 10px 40px;
+      background-color: var(--bg-gray);
+      border: 1px solid #c2c2c2;
+      border-radius: 50px;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .custom-navbar::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-link-custom {
-      font-size: 1.25rem;
-      font-weight: 500;
+      font-size: 1.05rem;
+      font-weight: 600;
       text-decoration: none;
-      margin: 0 25px;
-      color: #0d6efd;
+      padding: 6px 18px;
+      color: var(--primary-blue);
       transition: color 0.2s ease-in-out;
+      display: inline-block;
     }
 
     .nav-link-custom:hover {
-      color: #dc3545 !important;
+      color: var(--hover-red) !important;
     }
 
-    /* ========================================================
-       Custom Auto-sliding Banner
-       ======================================================== */
+    /* 2. Responsive Sliding Banner */
     .banner-container {
       position: relative;
       width: 100%;
-      height: 380px;
-      border-radius: 28px;
+      height: 220px;
+      border-radius: 20px;
       overflow: hidden;
-      background-color: #e2e2e2;
+      background-color: var(--bg-gray);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    @media (min-width: 768px) {
+      .banner-container {
+        height: 320px;
+        border-radius: 26px;
+      }
+      .brand-circle {
+        width: 65px;
+        height: 65px;
+        min-width: 65px;
+      }
+      .custom-navbar {
+        padding: 10px 30px;
+      }
+      .nav-link-custom {
+        font-size: 1.15rem;
+        margin: 0 10px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .banner-container {
+        height: 380px;
+      }
     }
 
     .banner-slide {
@@ -89,38 +139,38 @@
       object-fit: cover;
     }
 
-    /* Indicators */
     .banner-dots {
       position: absolute;
-      bottom: 15px;
+      bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 6px;
       z-index: 10;
     }
 
     .banner-dot {
-      width: 30px;
+      width: 24px;
       height: 4px;
       background-color: rgba(255, 255, 255, 0.5);
       border-radius: 2px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, width 0.3s;
     }
 
     .banner-dot.active {
       background-color: #ffffff;
+      width: 32px;
     }
 
-    /* Product Cards */
+    /* 3. Product Cards Responsive */
     .product-card {
-      border: 1px solid #ebebeb;
-      border-radius: 16px;
+      border: 1px solid #e9ecef;
+      border-radius: 14px;
       background: #ffffff;
-      padding: 12px;
+      padding: 10px;
       height: 100%;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: pointer;
       display: flex;
@@ -128,16 +178,16 @@
     }
 
     .product-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
     }
 
     .product-img-box {
       width: 100%;
-      height: 110px;
-      border-radius: 12px;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
       overflow: hidden;
-      background-color: #f1f1f1;
+      background-color: #f1f3f5;
       margin-bottom: 8px;
     }
 
@@ -145,13 +195,17 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s ease;
     }
 
-    /* Text Colors */
+    .product-card:hover .product-img-box img {
+      transform: scale(1.05);
+    }
+
     .product-title {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      color: #0d6efd;
+      color: var(--primary-blue);
       margin-bottom: 4px;
       transition: color 0.2s ease;
     }
@@ -159,44 +213,41 @@
     .product-desc {
       font-size: 0.72rem;
       line-height: 1.35;
-      color: #0d6efd;
+      color: #495057;
       margin: 0;
-      transition: color 0.2s ease;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    .product-card:hover .product-title,
-    .product-card:hover .product-desc {
-      color: #dc3545 !important;
+    .product-card:hover .product-title {
+      color: var(--hover-red) !important;
     }
 
-    /* Footer Styling */
+    /* 4. Footer Styling */
     footer {
-      background-color: #fafafa;
-      border-top: 1px solid #ededed;
+      background-color: #ffffff;
+      border-top: 1px solid #dee2e6;
       font-size: 0.82rem;
     }
 
     footer a, footer p, footer span, footer strong, footer small, footer li {
-      color: #0d6efd;
+      color: var(--primary-blue);
       transition: color 0.2s ease;
     }
 
-    footer a:hover, footer p:hover, footer span:hover, 
-    footer strong:hover, footer small:hover, footer li:hover {
-      color: #dc3545 !important;
+    footer a:hover, footer li a:hover {
+      color: var(--hover-red) !important;
     }
 
     .footer-heading {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      margin-bottom: 14px;
-      color: #0d6efd;
-    }
-
-    .footer-heading:hover {
-      color: #dc3545 !important;
+      margin-bottom: 12px;
+      color: var(--primary-blue);
     }
 
     .footer-links {
@@ -206,7 +257,7 @@
     }
 
     .footer-links li {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .footer-links a {
@@ -216,44 +267,42 @@
 </head>
 <body>
 
-  <div class="container py-4">
+  <div class="container-xl py-3 py-md-4">
 
-    <!-- 1. Header (Logo SVG បង្កប់ផ្ទាល់ & Nav) -->
-    <div class="d-flex align-items-center gap-4 mb-4">
+    <!-- 1. Header (Logo SVG + Nav Responsive) -->
+    <div class="header-wrapper">
       <div class="brand-circle flex-shrink-0">
-        <!-- Atlas Studio Vector Logo (មិនបាច់ពឹងផ្អែកលើ File រូបភាពខាងក្រៅ) -->
+        <!-- Atlas Studio Vector Logo -->
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <circle cx="50" cy="50" r="48" fill="#ffffff" stroke="#1d3557" stroke-width="2"/>
-          <!-- Orbital rings -->
           <circle cx="50" cy="45" r="28" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="3 3"/>
           <circle cx="50" cy="45" r="22" fill="none" stroke="#e63946" stroke-width="2"/>
-          <!-- Stylized A -->
           <polygon points="50,18 32,58 42,58 46,48 54,48 58,58 68,58" fill="#1d3557"/>
           <polygon points="50,28 47,42 53,42" fill="#ffffff"/>
-          <!-- Swoosh bar -->
           <path d="M 22,50 Q 50,30 78,54" fill="none" stroke="#e63946" stroke-width="3" stroke-linecap="round"/>
           <text x="50" y="78" font-size="9" font-family="sans-serif" font-weight="900" fill="#1d3557" text-anchor="middle" letter-spacing="1">ATLAS</text>
           <text x="50" y="88" font-size="6.5" font-family="sans-serif" font-weight="700" fill="#6c757d" text-anchor="middle" letter-spacing="0.5">STUDIO</text>
         </svg>
       </div>
-      <div class="custom-navbar flex-grow-1 d-flex justify-content-start align-items-center">
+      
+      <nav class="custom-navbar">
         <a href="#" class="nav-link-custom">Home</a>
         <a href="#" class="nav-link-custom">About</a>
         <a href="#" class="nav-link-custom">Products</a>
         <a href="#" class="nav-link-custom">Contact</a>
-      </div>
+      </nav>
     </div>
 
-    <!-- 2. Auto-sliding Banner -->
-    <div class="banner-container mb-5">
+    <!-- 2. Auto-sliding Banner (រូបភាពថ្មីកម្រិតច្បាស់ Gaming & Desk Setup) -->
+    <div class="banner-container mb-4 mb-md-5">
       <div class="banner-slide active">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop" alt="Slide 1">
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&auto=format&fit=crop" alt="High Tech Gaming Setup">
       </div>
       <div class="banner-slide">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop" alt="Slide 2">
+        <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=1600&auto=format&fit=crop" alt="Modern Tech Gadgets">
       </div>
       <div class="banner-slide">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop" alt="Slide 3">
+        <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=1600&auto=format&fit=crop" alt="Minimal Workstation">
       </div>
 
       <!-- Indicators -->
@@ -264,210 +313,159 @@
       </div>
     </div>
 
-    <!-- 3. Product Grid (6 Columns x 3 Rows = 18 Cards) -->
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-6 g-3 mb-5">
+    <!-- 3. Responsive Product Grid (រូបភាពផលិតផលនីមួយៗថ្មីៗច្បាស់ល្អ) -->
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-2 g-md-3 mb-5">
       
-      <!-- ================= Row 1 ================= -->
+      <!-- Card 1: Laptops -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300" alt="Laptops">
+            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&auto=format&fit=crop" alt="Gaming Laptop">
           </div>
           <div class="product-title">Laptops</div>
-          <p class="product-desc">Ultralight notebooks, gaming laptops, and everyday portables from top brands.</p>
+          <p class="product-desc">Pro gaming notebooks & ultra-thin productivity laptops.</p>
         </div>
       </div>
 
+      <!-- Card 2: Keyboards & Mice -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" alt="Accessories">
+            <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400&auto=format&fit=crop" alt="Mechanical Keyboard">
           </div>
           <div class="product-title">Accessories</div>
-          <p class="product-desc">Keyboards, mice, bags, and essentials to upgrade your setup and workflow.</p>
+          <p class="product-desc">Custom mechanical keyboards, wireless mice, and desk gear.</p>
         </div>
       </div>
 
+      <!-- Card 3: Custom Desktops -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=300" alt="Desktops">
+            <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=400&auto=format&fit=crop" alt="Gaming Desktop Rig">
           </div>
           <div class="product-title">Desktops</div>
-          <p class="product-desc">All-in-ones, gaming towers, and compact PCs built for performance and value.</p>
+          <p class="product-desc">Custom liquid-cooled builds and high-end gaming rigs.</p>
         </div>
       </div>
 
+      <!-- Card 4: Curved Monitors -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300" alt="Monitors">
+            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format&fit=crop" alt="Curved UltraWide Monitor">
           </div>
           <div class="product-title">Monitors</div>
-          <p class="product-desc">4K displays, gaming panels, and productivity screens with crisp color and fast response.</p>
+          <p class="product-desc">High-refresh rate 4K & curved ultrawide gaming screens.</p>
         </div>
       </div>
 
+      <!-- Card 5: GPUs & Components -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=300" alt="Components">
+            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400&auto=format&fit=crop" alt="Graphics Card GPU">
           </div>
           <div class="product-title">Components</div>
-          <p class="product-desc">CPUs, GPUs, RAM, and storage to upgrade, repair, or build your next PC.</p>
+          <p class="product-desc">RTX graphic cards, fast NVMe SSDs, and motherboard sets.</p>
         </div>
       </div>
 
+      <!-- Card 6: Networking -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=300" alt="Networking">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&auto=format&fit=crop" alt="WiFi 6 Router">
           </div>
           <div class="product-title">Networking</div>
-          <p class="product-desc">Routers, mesh Wi-Fi, and adapters for reliable connections.</p>
+          <p class="product-desc">WiFi 6 routers, mesh systems, and Gigabit switches.</p>
         </div>
       </div>
 
-      <!-- ================= Row 2 ================= -->
+      <!-- Card 7: Audiophile Headsets -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300" alt="Laptops">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop" alt="Headphones">
           </div>
-          <div class="product-title">Laptops</div>
-          <p class="product-desc">Ultralight notebooks, gaming laptops, and everyday portables from top brands.</p>
+          <div class="product-title">Audio Gear</div>
+          <p class="product-desc">Noise-cancelling wireless headphones and studio headsets.</p>
         </div>
       </div>
 
+      <!-- Card 8: Smart Watch & Gadgets -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" alt="Accessories">
+            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&auto=format&fit=crop" alt="Smartwatch">
           </div>
-          <div class="product-title">Accessories</div>
-          <p class="product-desc">Keyboards, mice, bags, and essentials to upgrade your setup and workflow.</p>
+          <div class="product-title">Wearables</div>
+          <p class="product-desc">Modern fitness smartwatches and wearable trackers.</p>
         </div>
       </div>
 
+      <!-- Card 9: Ergonomic Gaming Chairs -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=300" alt="Desktops">
+            <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400&auto=format&fit=crop" alt="Gaming Setup Chair">
           </div>
-          <div class="product-title">Desktops</div>
-          <p class="product-desc">All-in-ones, gaming towers, and compact PCs built for performance and value.</p>
+          <div class="product-title">Furniture</div>
+          <p class="product-desc">Ergonomic office seating and adjustable gaming desks.</p>
         </div>
       </div>
 
+      <!-- Card 10: High-End Cameras -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300" alt="Monitors">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&auto=format&fit=crop" alt="Camera Photography">
           </div>
-          <div class="product-title">Monitors</div>
-          <p class="product-desc">4K displays, gaming panels, and productivity screens with crisp color and fast response.</p>
+          <div class="product-title">Cameras</div>
+          <p class="product-desc">Mirrorless 4K vlogging cameras and cinematic prime lenses.</p>
         </div>
       </div>
 
+      <!-- Card 11: Gaming Controllers -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=300" alt="Components">
+            <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=400&auto=format&fit=crop" alt="Gamepad Console">
           </div>
-          <div class="product-title">Components</div>
-          <p class="product-desc">CPUs, GPUs, RAM, and storage to upgrade, repair, or build your next PC.</p>
+          <div class="product-title">Controllers</div>
+          <p class="product-desc">Wireless gamepads, joysticks, and console accessories.</p>
         </div>
       </div>
 
+      <!-- Card 12: External Storage -->
       <div class="col">
         <div class="product-card">
           <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=300" alt="Networking">
+            <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&auto=format&fit=crop" alt="External SSD Storage">
           </div>
-          <div class="product-title">Networking</div>
-          <p class="product-desc">Routers, mesh Wi-Fi, and adapters for reliable connections.</p>
-        </div>
-      </div>
-
-      <!-- ================= Row 3 ================= -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300" alt="Laptops">
-          </div>
-          <div class="product-title">Laptops</div>
-          <p class="product-desc">Ultralight notebooks, gaming laptops, and everyday portables from top brands.</p>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" alt="Accessories">
-          </div>
-          <div class="product-title">Accessories</div>
-          <p class="product-desc">Keyboards, mice, bags, and essentials to upgrade your setup and workflow.</p>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=300" alt="Desktops">
-          </div>
-          <div class="product-title">Desktops</div>
-          <p class="product-desc">All-in-ones, gaming towers, and compact PCs built for performance and value.</p>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300" alt="Monitors">
-          </div>
-          <div class="product-title">Monitors</div>
-          <p class="product-desc">4K displays, gaming panels, and productivity screens with crisp color and fast response.</p>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=300" alt="Components">
-          </div>
-          <div class="product-title">Components</div>
-          <p class="product-desc">CPUs, GPUs, RAM, and storage to upgrade, repair, or build your next PC.</p>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=300" alt="Networking">
-          </div>
-          <div class="product-title">Networking</div>
-          <p class="product-desc">Routers, mesh Wi-Fi, and adapters for reliable connections.</p>
+          <div class="product-title">Storage</div>
+          <p class="product-desc">Ultra-fast external SSD drives and secure backup solutions.</p>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- 4. Footer -->
+  <!-- 4. Responsive Footer -->
   <footer class="pt-5 pb-4">
-    <div class="container">
+    <div class="container-xl">
       <div class="row g-4 pb-4 border-bottom">
         
-        <div class="col-lg-4 col-md-6">
+        <div class="col-12 col-md-6 col-lg-4">
           <div class="d-flex align-items-center gap-2 mb-2">
             <span class="badge bg-black rounded p-2 fw-bold text-white">A</span>
             <div>
               <strong class="d-block">Atlas Studio</strong>
-              <small style="font-size: 0.7rem;">Built for clarity, speed, and long-term growth.</small>
+              <small style="font-size: 0.7rem;">Built for clarity, speed, and growth.</small>
             </div>
           </div>
-          <p class="mt-3 mb-3" style="font-size: 0.8rem; line-height: 1.5; max-width: 320px;">
-            A modern digital workspace for teams that need polished product experiences, clear information architecture, and a foundation that scales with confidence.
+          <p class="mt-2 mb-3" style="font-size: 0.8rem; line-height: 1.5;">
+            A modern digital workspace for teams that need polished product experiences and scalable web layouts.
           </p>
           <div class="d-flex gap-2">
             <span class="badge bg-white border fw-normal py-1 px-2" style="font-size: 0.7rem;">Support 24/7</span>
@@ -475,7 +473,7 @@
           </div>
         </div>
 
-        <div class="col-lg-2 col-6">
+        <div class="col-6 col-md-3 col-lg-2">
           <div class="footer-heading">Product</div>
           <ul class="footer-links">
             <li><a href="#">Features</a></li>
@@ -485,7 +483,7 @@
           </ul>
         </div>
 
-        <div class="col-lg-2 col-6">
+        <div class="col-6 col-md-3 col-lg-2">
           <div class="footer-heading">Company</div>
           <ul class="footer-links">
             <li><a href="#">About</a></li>
@@ -495,7 +493,7 @@
           </ul>
         </div>
 
-        <div class="col-lg-1 col-6">
+        <div class="col-6 col-md-3 col-lg-2">
           <div class="footer-heading">Resources</div>
           <ul class="footer-links">
             <li><a href="#">Blog</a></li>
@@ -505,28 +503,18 @@
           </ul>
         </div>
 
-        <div class="col-lg-1 col-6">
-          <div class="footer-heading">Legal</div>
-          <ul class="footer-links">
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Cookies</a></li>
-            <li><a href="#">Accessibility</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-6">
+        <div class="col-12 col-md-6 col-lg-2">
           <div class="footer-heading">Newsletter</div>
-          <p style="font-size: 0.75rem;">Get product updates, launch notes, and design insights delivered to your inbox.</p>
-          <form class="d-flex gap-1 mt-2">
+          <p style="font-size: 0.75rem;">Get updates delivered straight to your inbox.</p>
+          <form class="d-flex flex-column gap-2 mt-2">
             <input type="email" class="form-control form-control-sm" placeholder="Email address" style="font-size: 0.75rem;">
-            <button type="submit" class="btn btn-outline-primary btn-sm px-2" style="font-size: 0.75rem;">Subscribe</button>
+            <button type="submit" class="btn btn-outline-primary btn-sm" style="font-size: 0.75rem;">Subscribe</button>
           </form>
         </div>
 
       </div>
 
-      <div class="d-flex flex-wrap justify-content-between align-items-center pt-3" style="font-size: 0.75rem;">
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 pt-3" style="font-size: 0.75rem;">
         <div>&copy; 2026 Atlas Studio. All rights reserved.</div>
         <div class="d-flex align-items-center gap-3">
           <span>Follow us</span>
@@ -539,7 +527,7 @@
     </div>
   </footer>
 
-  <!-- Native JavaScript Auto Slide -->
+  <!-- Script for Auto-sliding Banner -->
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('.banner-slide');
