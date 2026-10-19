@@ -34,19 +34,25 @@
       width: 55px;
       height: 55px;
       min-width: 55px;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
+      background: radial-gradient(circle, #ffffff 60%, #eef2f7 100%);
+      border: 1.5px solid #d0d7de;
       border-radius: 50%;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 10px rgba(13, 110, 253, 0.15);
+      transition: transform 0.25s ease;
+    }
+
+    .brand-circle:hover {
+      transform: rotate(6deg) scale(1.05);
     }
 
     .brand-circle svg {
       width: 100%;
       height: 100%;
+      padding: 3px;
     }
 
     .custom-navbar {
@@ -269,297 +275,24 @@
 
   <div class="container-xl py-3 py-md-4">
 
-    <!-- 1. Header (Logo SVG + Nav Responsive) -->
+    <!-- 1. Header (Brand-New Custom Cyber Tech Shield Logo) -->
     <div class="header-wrapper">
       <div class="brand-circle flex-shrink-0">
-        <!-- Atlas Studio Vector Logo -->
+        <!-- New Modern Shield Tech Logo -->
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="48" fill="#ffffff" stroke="#1d3557" stroke-width="2"/>
-          <circle cx="50" cy="45" r="28" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="3 3"/>
-          <circle cx="50" cy="45" r="22" fill="none" stroke="#e63946" stroke-width="2"/>
-          <polygon points="50,18 32,58 42,58 46,48 54,48 58,58 68,58" fill="#1d3557"/>
-          <polygon points="50,28 47,42 53,42" fill="#ffffff"/>
-          <path d="M 22,50 Q 50,30 78,54" fill="none" stroke="#e63946" stroke-width="3" stroke-linecap="round"/>
-          <text x="50" y="78" font-size="9" font-family="sans-serif" font-weight="900" fill="#1d3557" text-anchor="middle" letter-spacing="1">ATLAS</text>
-          <text x="50" y="88" font-size="6.5" font-family="sans-serif" font-weight="700" fill="#6c757d" text-anchor="middle" letter-spacing="0.5">STUDIO</text>
-        </svg>
-      </div>
-      
-      <nav class="custom-navbar">
-        <a href="#" class="nav-link-custom">Home</a>
-        <a href="#" class="nav-link-custom">About</a>
-        <a href="#" class="nav-link-custom">Products</a>
-        <a href="#" class="nav-link-custom">Contact</a>
-      </nav>
-    </div>
+          <defs>
+            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0d6efd" />
+              <stop offset="100%" stop-color="#052c65" />
+            </linearGradient>
+            <linearGradient id="neonRed" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff4d4d" />
+              <stop offset="100%" stop-color="#dc3545" />
+            </linearGradient>
+            <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f8f9fa" />
+              <stop offset="100%" stop-color="#ced4da" />
+            </linearGradient>
+          </defs>
 
-    <!-- 2. Auto-sliding Banner (រូបភាពថ្មីកម្រិតច្បាស់ Gaming & Desk Setup) -->
-    <div class="banner-container mb-4 mb-md-5">
-      <div class="banner-slide active">
-        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&auto=format&fit=crop" alt="High Tech Gaming Setup">
-      </div>
-      <div class="banner-slide">
-        <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=1600&auto=format&fit=crop" alt="Modern Tech Gadgets">
-      </div>
-      <div class="banner-slide">
-        <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=1600&auto=format&fit=crop" alt="Minimal Workstation">
-      </div>
-
-      <!-- Indicators -->
-      <div class="banner-dots">
-        <div class="banner-dot active" onclick="goToSlide(0)"></div>
-        <div class="banner-dot" onclick="goToSlide(1)"></div>
-        <div class="banner-dot" onclick="goToSlide(2)"></div>
-      </div>
-    </div>
-
-    <!-- 3. Responsive Product Grid (រូបភាពផលិតផលនីមួយៗថ្មីៗច្បាស់ល្អ) -->
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-2 g-md-3 mb-5">
-      
-      <!-- Card 1: Laptops -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&auto=format&fit=crop" alt="Gaming Laptop">
-          </div>
-          <div class="product-title">Laptops</div>
-          <p class="product-desc">Pro gaming notebooks & ultra-thin productivity laptops.</p>
-        </div>
-      </div>
-
-      <!-- Card 2: Keyboards & Mice -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400&auto=format&fit=crop" alt="Mechanical Keyboard">
-          </div>
-          <div class="product-title">Accessories</div>
-          <p class="product-desc">Custom mechanical keyboards, wireless mice, and desk gear.</p>
-        </div>
-      </div>
-
-      <!-- Card 3: Custom Desktops -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=400&auto=format&fit=crop" alt="Gaming Desktop Rig">
-          </div>
-          <div class="product-title">Desktops</div>
-          <p class="product-desc">Custom liquid-cooled builds and high-end gaming rigs.</p>
-        </div>
-      </div>
-
-      <!-- Card 4: Curved Monitors -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format&fit=crop" alt="Curved UltraWide Monitor">
-          </div>
-          <div class="product-title">Monitors</div>
-          <p class="product-desc">High-refresh rate 4K & curved ultrawide gaming screens.</p>
-        </div>
-      </div>
-
-      <!-- Card 5: GPUs & Components -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400&auto=format&fit=crop" alt="Graphics Card GPU">
-          </div>
-          <div class="product-title">Components</div>
-          <p class="product-desc">RTX graphic cards, fast NVMe SSDs, and motherboard sets.</p>
-        </div>
-      </div>
-
-      <!-- Card 6: Networking -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&auto=format&fit=crop" alt="WiFi 6 Router">
-          </div>
-          <div class="product-title">Networking</div>
-          <p class="product-desc">WiFi 6 routers, mesh systems, and Gigabit switches.</p>
-        </div>
-      </div>
-
-      <!-- Card 7: Audiophile Headsets -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop" alt="Headphones">
-          </div>
-          <div class="product-title">Audio Gear</div>
-          <p class="product-desc">Noise-cancelling wireless headphones and studio headsets.</p>
-        </div>
-      </div>
-
-      <!-- Card 8: Smart Watch & Gadgets -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&auto=format&fit=crop" alt="Smartwatch">
-          </div>
-          <div class="product-title">Wearables</div>
-          <p class="product-desc">Modern fitness smartwatches and wearable trackers.</p>
-        </div>
-      </div>
-
-      <!-- Card 9: Ergonomic Gaming Chairs -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400&auto=format&fit=crop" alt="Gaming Setup Chair">
-          </div>
-          <div class="product-title">Furniture</div>
-          <p class="product-desc">Ergonomic office seating and adjustable gaming desks.</p>
-        </div>
-      </div>
-
-      <!-- Card 10: High-End Cameras -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&auto=format&fit=crop" alt="Camera Photography">
-          </div>
-          <div class="product-title">Cameras</div>
-          <p class="product-desc">Mirrorless 4K vlogging cameras and cinematic prime lenses.</p>
-        </div>
-      </div>
-
-      <!-- Card 11: Gaming Controllers -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=400&auto=format&fit=crop" alt="Gamepad Console">
-          </div>
-          <div class="product-title">Controllers</div>
-          <p class="product-desc">Wireless gamepads, joysticks, and console accessories.</p>
-        </div>
-      </div>
-
-      <!-- Card 12: External Storage -->
-      <div class="col">
-        <div class="product-card">
-          <div class="product-img-box">
-            <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&auto=format&fit=crop" alt="External SSD Storage">
-          </div>
-          <div class="product-title">Storage</div>
-          <p class="product-desc">Ultra-fast external SSD drives and secure backup solutions.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- 4. Responsive Footer -->
-  <footer class="pt-5 pb-4">
-    <div class="container-xl">
-      <div class="row g-4 pb-4 border-bottom">
-        
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="d-flex align-items-center gap-2 mb-2">
-            <span class="badge bg-black rounded p-2 fw-bold text-white">A</span>
-            <div>
-              <strong class="d-block">Atlas Studio</strong>
-              <small style="font-size: 0.7rem;">Built for clarity, speed, and growth.</small>
-            </div>
-          </div>
-          <p class="mt-2 mb-3" style="font-size: 0.8rem; line-height: 1.5;">
-            A modern digital workspace for teams that need polished product experiences and scalable web layouts.
-          </p>
-          <div class="d-flex gap-2">
-            <span class="badge bg-white border fw-normal py-1 px-2" style="font-size: 0.7rem;">Support 24/7</span>
-            <span style="font-size: 0.7rem; align-self: center;">Updated weekly</span>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3 col-lg-2">
-          <div class="footer-heading">Product</div>
-          <ul class="footer-links">
-            <li><a href="#">Features</a></li>
-            <li><a href="#">Templates</a></li>
-            <li><a href="#">Integrations</a></li>
-            <li><a href="#">Security</a></li>
-          </ul>
-        </div>
-
-        <div class="col-6 col-md-3 col-lg-2">
-          <div class="footer-heading">Company</div>
-          <ul class="footer-links">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="col-6 col-md-3 col-lg-2">
-          <div class="footer-heading">Resources</div>
-          <ul class="footer-links">
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Guides</a></li>
-            <li><a href="#">API Docs</a></li>
-            <li><a href="#">Status</a></li>
-          </ul>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-2">
-          <div class="footer-heading">Newsletter</div>
-          <p style="font-size: 0.75rem;">Get updates delivered straight to your inbox.</p>
-          <form class="d-flex flex-column gap-2 mt-2">
-            <input type="email" class="form-control form-control-sm" placeholder="Email address" style="font-size: 0.75rem;">
-            <button type="submit" class="btn btn-outline-primary btn-sm" style="font-size: 0.75rem;">Subscribe</button>
-          </form>
-        </div>
-
-      </div>
-
-      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 pt-3" style="font-size: 0.75rem;">
-        <div>&copy; 2026 Atlas Studio. All rights reserved.</div>
-        <div class="d-flex align-items-center gap-3">
-          <span>Follow us</span>
-          <a href="#" class="text-decoration-none"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="text-decoration-none"><i class="bi bi-linkedin"></i></a>
-          <a href="#" class="text-decoration-none"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="text-decoration-none"><i class="bi bi-youtube"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Script for Auto-sliding Banner -->
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.banner-slide');
-    const dots = document.querySelectorAll('.banner-dot');
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        dots[i].classList.remove('active');
-      });
-      slides[index].classList.add('active');
-      dots[index].classList.add('active');
-      currentSlide = index;
-    }
-
-    function nextSlide() {
-      let next = (currentSlide + 1) % totalSlides;
-      showSlide(next);
-    }
-
-    function goToSlide(index) {
-      showSlide(index);
-      resetTimer();
-    }
-
-    let slideInterval = setInterval(nextSlide, 3000);
-
-    function resetTimer() {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, 3000);
-    }
-  </script>
-</body>
-</html>
+          <!-- Outer Cyber Shield
